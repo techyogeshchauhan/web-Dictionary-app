@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: #ffffff;
+      padding: 20px 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      margin-bottom: 20px; /* Space for footer */
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333333;
+    }
+
+    label {
+      font-weight: bold;
+      color: #333333;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #cccccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button[type="submit"] {
+      background-color: #28a745;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #218838;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .footer a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .footer a:hover {
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Register</h2>
+    <form id="registerForm" action="/register_admin" method="POST">
+      <label for="first_name">First Name:</label>
+      <input type="text" id="first_name" name="first_name" required>
+      <label for="last_name">Last Name:</label>
+      <input type="text" id="last_name" name="last_name" required>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <label for="email">Email (Gmail):</label>
+      <input type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@gmail\.com" required>
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <div class="footer">
+    <p>Already have an account? <a href="Admin_login.html">Login</a></p>
+  </div>
+
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+
+      fetch('/register_admin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(result => {
+        if (result.message === 'User registered successfully') {
+          window.location.href = '/Admin_login';
+        } else {
+          alert(result.message);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    });
+  </script>
+</body>
+</html>

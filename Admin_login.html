@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      width: 100%;
+      animation: fadeIn 1s ease-in-out;
+      border: 1px solid #ddd;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    label {
+      font-weight: 500;
+      color: #555;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: calc(100% - 20px);
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    button[type="submit"] {
+      background-color: #007bff;
+      color: #ffffff;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 18px;
+      width: 100%;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    .form-footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .form-footer a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .form-footer a:hover {
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Login</h2>
+    <form id="loginForm" action="/login" method="POST">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <button type="submit">Login</button>
+      <div class="form-footer">
+        <p>Don't have an account? <a href="register_admin.html">Register</a></p>
+      </div>
+    </form>
+  </div>  
+</body>
+</html>
